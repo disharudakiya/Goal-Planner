@@ -15,11 +15,7 @@ namespace Goal_Planner
         public dashboard()
         {
             InitializeComponent();
-
-            ucDashboard dashPage = new ucDashboard();
-            dashPage.Dock = DockStyle.Fill;
-            panel3.Controls.Add(dashPage);
-        
+            ShowTaskList();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -37,13 +33,15 @@ namespace Goal_Planner
 
         private void dashboard_btn_Click(object sender, EventArgs e)
         {
+            ShowTaskList();
+        }
+
+        private void ShowTaskList()
+        {
             panel3.Controls.Clear();
-            ucDashboard dashPage = new ucDashboard();
-            dashPage.Dock = DockStyle.Fill;
-            panel3.Controls.Add(dashPage);
-
-
-
+            ucTaskList taskListPage = new ucTaskList();
+            taskListPage.Dock = DockStyle.Fill;
+            panel3.Controls.Add(taskListPage);
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -64,17 +62,13 @@ namespace Goal_Planner
         private void view_btn_Click(object sender, EventArgs e)
         {
             panel3.Controls.Clear();
-            ucviewTask addPage = new ucviewTask();
-            addPage.Dock = DockStyle.Fill;
-            panel3.Controls.Add(addPage);
+            ucviewTask viewPage = new ucviewTask();
+            viewPage.Dock = DockStyle.Fill;
+            panel3.Controls.Add(viewPage);
 
-
-            
-
-
-
-    
-         }
+            // Load all tasks immediately
+            viewPage.LoadAllTasks();
+        }
 
         private void setting_btn_Click(object sender, EventArgs e)
         {
@@ -82,8 +76,6 @@ namespace Goal_Planner
             ucSettings addPage = new ucSettings();
             addPage.Dock = DockStyle.Fill;
             panel3.Controls.Add(addPage);
-
-
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)

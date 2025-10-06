@@ -92,6 +92,9 @@
     <Compile Include="ucSettings.Designer.cs">
       <DependentUpon>ucSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucTaskList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ucviewTask.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -132,6 +135,9 @@
     <EmbeddedResource Include="ucSettings.resx">
       <DependentUpon>ucSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucTaskList.resx">
+      <DependentUpon>ucTaskList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucviewTask.resx">
       <DependentUpon>ucviewTask.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +160,8 @@
   <ItemGroup>
     <Content Include="edit-table.ico" />
     <Content Include="icons8-lock-50 %281%29.ico" />
+    <None Include="Resources\shapes.png" />
+    <None Include="Resources\calendar.png" />
     <None Include="Resources\bin.png" />
     <None Include="Resources\edit-table.png" />
     <None Include="Resources\icon-edit.bmp" />

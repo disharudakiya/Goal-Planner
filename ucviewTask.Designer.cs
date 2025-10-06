@@ -31,7 +31,6 @@
             this.panelViewTask = new System.Windows.Forms.Panel();
             this.View_Task = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.LoadBtn = new System.Windows.Forms.Button();
             this.Searchbtn = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
@@ -68,7 +67,6 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.LightGray;
-            this.panel1.Controls.Add(this.LoadBtn);
             this.panel1.Controls.Add(this.Searchbtn);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.cmbCategory);
@@ -78,18 +76,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(964, 96);
             this.panel1.TabIndex = 1;
-            // 
-            // LoadBtn
-            // 
-            this.LoadBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.LoadBtn.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoadBtn.Location = new System.Drawing.Point(846, 21);
-            this.LoadBtn.Name = "LoadBtn";
-            this.LoadBtn.Size = new System.Drawing.Size(122, 45);
-            this.LoadBtn.TabIndex = 3;
-            this.LoadBtn.Text = "Refresh";
-            this.LoadBtn.UseVisualStyleBackColor = false;
-            this.LoadBtn.Click += new System.EventHandler(this.LoadBtn_Click);
             // 
             // Searchbtn
             // 
@@ -177,6 +163,5 @@
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Button Searchbtn;
         private System.Windows.Forms.DataGridView dgvTasks;
-        private System.Windows.Forms.Button LoadBtn;
     }
 }

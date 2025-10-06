@@ -59,6 +59,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ucDashboard";
             this.Size = new System.Drawing.Size(954, 651);
+            this.Load += new System.EventHandler(this.ucDashboard_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

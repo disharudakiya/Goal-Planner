@@ -23,5 +23,10 @@ namespace Goal_Planner
         {
 
         }
+
+        private void ucDashboard_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

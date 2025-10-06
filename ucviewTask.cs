@@ -18,7 +18,10 @@ namespace Goal_Planner
             InitializeComponent();
         }
     
-
+        public void LoadAllTasks()
+        {
+            LoadBtn_Click(null, null);
+        }
 
         // Example usage: Trigger the Edit event when a task is selected for editing
         private void dgvTasks_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -42,7 +45,7 @@ namespace Goal_Planner
                 {
                     if (MessageBox.Show("Are you sure you want to delete this task?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
-                        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"Goal Planner\";Integrated Security=True;TrustServerCertificate=True;";
+                        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"Goal Planner\";Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;";
                         using (SqlConnection conn = new SqlConnection(connectionString))
                         {
                             string query = "DELETE FROM AddTasks WHERE AddTaskID=@TaskID";
@@ -101,4 +104,4 @@ namespace Goal_Planner
             }
         }
     }
-    }
+}
