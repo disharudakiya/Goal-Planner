@@ -35,21 +35,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(167, 89);
+            this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(121, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 16);
+            this.label1.Size = new System.Drawing.Size(129, 29);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "Dashboard";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(325, 89);
+            this.label2.Location = new System.Drawing.Point(481, 338);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 16);
+            this.label2.Size = new System.Drawing.Size(0, 16);
             this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
             // 
             // ucDashboard
             // 
@@ -58,7 +58,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ucDashboard";
-            this.Size = new System.Drawing.Size(679, 477);
+            this.Size = new System.Drawing.Size(954, 651);
             this.ResumeLayout(false);
             this.PerformLayout();
 

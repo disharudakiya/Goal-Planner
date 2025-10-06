@@ -18,7 +18,7 @@ namespace Goal_Planner
 
             ucDashboard dashPage = new ucDashboard();
             dashPage.Dock = DockStyle.Fill;
-            panel2.Controls.Add(dashPage);
+            panel3.Controls.Add(dashPage);
         
         }
 
@@ -29,18 +29,18 @@ namespace Goal_Planner
 
         private void button1_Click(object sender, EventArgs e)
         {
-            panel2.Controls.Clear();
+            panel3.Controls.Clear();
             ucAddTask addPage = new ucAddTask();
             addPage.Dock = DockStyle.Fill;
-            panel2.Controls.Add(addPage);
+            panel3.Controls.Add(addPage);
         }
 
         private void dashboard_btn_Click(object sender, EventArgs e)
         {
-            panel2.Controls.Clear();
+            panel3.Controls.Clear();
             ucDashboard dashPage = new ucDashboard();
             dashPage.Dock = DockStyle.Fill;
-            panel2.Controls.Add(dashPage);
+            panel3.Controls.Add(dashPage);
 
 
 
@@ -63,19 +63,25 @@ namespace Goal_Planner
 
         private void view_btn_Click(object sender, EventArgs e)
         {
-            panel2.Controls.Clear();
+            panel3.Controls.Clear();
             ucviewTask addPage = new ucviewTask();
             addPage.Dock = DockStyle.Fill;
-            panel2.Controls.Add(addPage);
+            panel3.Controls.Add(addPage);
 
-        }
+
+            
+
+
+
+    
+         }
 
         private void setting_btn_Click(object sender, EventArgs e)
         {
-            panel2.Controls.Clear();
+            panel3.Controls.Clear();
             ucSettings addPage = new ucSettings();
             addPage.Dock = DockStyle.Fill;
-            panel2.Controls.Add(addPage);
+            panel3.Controls.Add(addPage);
 
 
         }
@@ -86,6 +92,11 @@ namespace Goal_Planner
         }
 
         private void dashboard_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -16,7 +16,7 @@ namespace Goal_Planner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new login_page());
+            Application.Run(new dashboard());
         }
     }
 }

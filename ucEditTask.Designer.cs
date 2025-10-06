@@ -50,7 +50,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(646, 44);
+            this.panel1.Size = new System.Drawing.Size(578, 44);
             this.panel1.TabIndex = 0;
             // 
             // edit_label
@@ -172,7 +172,7 @@
             this.Controls.Add(this.Title);
             this.Controls.Add(this.panel1);
             this.Name = "ucEditTask";
-            this.Size = new System.Drawing.Size(646, 476);
+            this.Size = new System.Drawing.Size(578, 476);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

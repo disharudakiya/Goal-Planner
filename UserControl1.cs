@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace Goal_Planner
 {
-    public partial class ucSettings : UserControl
+    public partial class UserControl1 : UserControl
     {
-        public ucSettings()
+        public UserControl1()
         {
             InitializeComponent();
-        }
-
-        private void ucSettings_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelSettings_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
