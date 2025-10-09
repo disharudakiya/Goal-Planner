@@ -13,12 +13,22 @@ namespace Goal_Planner
 {
     public partial class ucviewTask : UserControl
     {
+        private DataTable allTasks = new DataTable(); // store all data for filtering
         public ucviewTask()
         {
             InitializeComponent();
             dgvTasks.MultiSelect = false;
             dgvTasks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dgvTasks.CellContentClick += dgvTasks_CellContentClick;
+
+            // Setup category ComboBox
+            cmbCategory.Items.Clear();
+            cmbCategory.Items.Add("All");
+            cmbCategory.Items.Add("Work");
+            cmbCategory.Items.Add("Personal");
+            cmbCategory.Items.Add("Study");
+            cmbCategory.SelectedIndex = 0; // Default to "All"
+            this.cmbCategory.SelectedIndexChanged += cmbCategory_SelectedIndexChanged;
         }
 
         public void LoadAllTasks()
@@ -98,7 +108,12 @@ namespace Goal_Planner
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
-                dgvTasks.DataSource = dt;
+
+                // Store all data for filtering
+                allTasks = dt;
+
+                // Always use ApplyFilters to show all or filtered data
+                ApplyFilters();
 
                 // Style
                 dgvTasks.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
@@ -134,6 +149,57 @@ namespace Goal_Planner
         private void Searchbtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            ApplyFilters();
+
+
+        }
+
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyFilters();
+
+
+        }
+
+        private void ApplyFilters()
+        {
+            if (allTasks == null || allTasks.Rows.Count == 0)
+                return;
+
+            string searchText = txtSearch.Text.Trim().ToLower();
+            string selectedCategory = cmbCategory.SelectedItem?.ToString();
+
+            IEnumerable<DataRow> filteredRows = allTasks.AsEnumerable();
+
+            // Filter by search text (Title or Description)
+            if (!string.IsNullOrEmpty(searchText))
+                filteredRows = filteredRows.Where(r =>
+                    (r.Field<string>("Title")?.ToLower().Contains(searchText) == true) ||
+                    (r.Field<string>("Description")?.ToLower().Contains(searchText) == true)
+                );
+
+            // Filter by category
+            if (!string.IsNullOrEmpty(selectedCategory) && selectedCategory != "All")
+                filteredRows = filteredRows.Where(r => r.Field<string>("Category") == selectedCategory);
+
+            // If no filter is applied, show all data
+            if (string.IsNullOrEmpty(searchText) && (string.IsNullOrEmpty(selectedCategory) || selectedCategory == "All"))
+            {
+                dgvTasks.DataSource = allTasks;
+            }
+            else if (filteredRows.Any())
+            {
+                // Show filtered and sorted data
+                dgvTasks.DataSource = filteredRows.OrderBy(r => r.Field<DateTime>("DueDate")).CopyToDataTable();
+            }
+            else
+            {
+                dgvTasks.DataSource = null;
+            }
         }
     }
 }

@@ -95,16 +95,25 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(260, 31);
             this.txtSearch.TabIndex = 2;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // cmbCategory
             // 
             this.cmbCategory.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cmbCategory.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCategory.FormattingEnabled = true;
+            this.cmbCategory.Items.AddRange(new object[] {
+            "Work",
+            "Study",
+            "Bills",
+            "Personal",
+            "Health",
+            "all"});
             this.cmbCategory.Location = new System.Drawing.Point(470, 27);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(178, 32);
             this.cmbCategory.TabIndex = 3;
+            this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             // 
             // dgvTasks
             // 
