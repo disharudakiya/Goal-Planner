@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Main_panel = new System.Windows.Forms.Panel();
             this.login_panel = new System.Windows.Forms.Panel();
             this.linkForgot = new System.Windows.Forms.LinkLabel();
             this.btnLogin = new System.Windows.Forms.Button();
             this.picLock = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Main_panel.SuspendLayout();
             this.login_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLock)).BeginInit();
@@ -56,11 +58,11 @@
             this.login_panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.login_panel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.login_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.login_panel.Controls.Add(this.textBox1);
             this.login_panel.Controls.Add(this.linkForgot);
             this.login_panel.Controls.Add(this.btnLogin);
             this.login_panel.Controls.Add(this.picLock);
             this.login_panel.Controls.Add(this.lblTitle);
-            this.login_panel.Controls.Add(this.txtPassword);
             this.login_panel.Location = new System.Drawing.Point(219, 99);
             this.login_panel.Name = "login_panel";
             this.login_panel.Size = new System.Drawing.Size(350, 250);
@@ -110,14 +112,18 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Enter Password";
             // 
-            // txtPassword
+            // textBox1
             // 
-            this.txtPassword.Location = new System.Drawing.Point(94, 124);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(154, 22);
-            this.txtPassword.TabIndex = 1;
-            this.txtPassword.UseSystemPasswordChar = true;
-            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            this.textBox1.Location = new System.Drawing.Point(109, 122);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(116, 22);
+            this.textBox1.TabIndex = 5;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // login_page
             // 
@@ -145,9 +151,10 @@
         private System.Windows.Forms.Panel login_panel;
         private System.Windows.Forms.PictureBox picLock;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.LinkLabel linkForgot;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
 
