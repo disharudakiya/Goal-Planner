@@ -34,7 +34,6 @@
             this.Searchbtn = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.dgvTasks = new System.Windows.Forms.DataGridView();
             this.panelViewTask.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -70,7 +69,6 @@
             this.panel1.Controls.Add(this.Searchbtn);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.cmbCategory);
-            this.panel1.Controls.Add(this.cmbStatus);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 54);
             this.panel1.Name = "panel1";
@@ -87,6 +85,7 @@
             this.Searchbtn.TabIndex = 6;
             this.Searchbtn.Text = "Search";
             this.Searchbtn.UseVisualStyleBackColor = false;
+            this.Searchbtn.Click += new System.EventHandler(this.Searchbtn_Click);
             // 
             // txtSearch
             // 
@@ -106,16 +105,6 @@
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(178, 32);
             this.cmbCategory.TabIndex = 3;
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cmbStatus.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(668, 27);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(172, 32);
-            this.cmbStatus.TabIndex = 4;
             // 
             // dgvTasks
             // 
@@ -160,7 +149,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.ComboBox cmbCategory;
-        private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Button Searchbtn;
         private System.Windows.Forms.DataGridView dgvTasks;
     }

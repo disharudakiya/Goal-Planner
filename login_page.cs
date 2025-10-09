@@ -13,6 +13,8 @@ namespace Goal_Planner
 {
     public partial class login_page : Form
     {
+        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"Goal Planner\";Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;";
+
         public login_page()
         {
             InitializeComponent();
@@ -66,7 +68,7 @@ namespace Goal_Planner
                 this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 this.btnLogin.Location = new System.Drawing.Point(70, 180);
                 this.btnLogin.Size = new System.Drawing.Size(200, 35);
-                this.btnLogin.Click += new System.EventHandler(this.Login_Button_Click);
+                this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
 
                 // linkForgot
                 this.linkForgot.Text = "Forgot Password?";
@@ -115,11 +117,6 @@ namespace Goal_Planner
 
         }
 
-        private void Login_Button_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
 
@@ -128,6 +125,50 @@ namespace Goal_Planner
         private void Main_panel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            string enteredPassword = txtPassword.Text.Trim();
+            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"Goal Planner\";Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                // Get the first password from the table (assuming only one row)
+                string query = "SELECT TOP 1 RTRIM(LTRIM(Password)) FROM AppPassword";
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                conn.Open();
+                object dbPasswordObj = cmd.ExecuteScalar();
+                conn.Close();
+
+                if (dbPasswordObj != null)
+                {
+                    string dbPassword = dbPasswordObj.ToString();
+                    if (enteredPassword == dbPassword)
+                    {
+                        // Password correct, open dashboard
+                        //dashboard dash = new dashboard();
+                        //dash.Show();
+                        //this.Hide();
+                        txtPassword.Clear();
+                        txtPassword.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrect password. Please try again.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //txtPassword.Clear();
+                        //txtPassword.Focus();
+                        dashboard dash = new dashboard();
+                        dash.Show();
+                        this.Hide();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No password set in database.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

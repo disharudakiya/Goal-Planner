@@ -16,8 +16,11 @@ namespace Goal_Planner
         public ucviewTask()
         {
             InitializeComponent();
+            dgvTasks.MultiSelect = false;
+            dgvTasks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTasks.CellContentClick += dgvTasks_CellContentClick;
         }
-    
+
         public void LoadAllTasks()
         {
             LoadBtn_Click(null, null);
@@ -26,38 +29,62 @@ namespace Goal_Planner
         // Example usage: Trigger the Edit event when a task is selected for editing
         private void dgvTasks_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            // Ensure the click is on a valid row and not a header or new row
+            if (e.RowIndex < 0 || e.RowIndex >= dgvTasks.Rows.Count || dgvTasks.Rows[e.RowIndex].IsNewRow)
+                return;
+
+            // Ensure the click is on a valid column
+            if (e.ColumnIndex < 0 || e.ColumnIndex >= dgvTasks.Columns.Count)
+                return;
+
+            // Check if the cell has a value before accessing it
+            var cell = dgvTasks.Rows[e.RowIndex].Cells["AddTaskID"];
+            if (cell.Value == null || cell.Value == DBNull.Value)
+                return;
+
+            int taskId = Convert.ToInt32(cell.Value);
+
+            // EDIT
+            if (dgvTasks.Columns[e.ColumnIndex].Name == "Edit")
             {
-                int taskId = Convert.ToInt32(dgvTasks.Rows[e.RowIndex].Cells["AddTaskID"].Value);
+                // Hide this view and show edit page with prefilled data
+                ucAddTask editPage = new ucAddTask(taskId); // Assumes ucAddTask loads data by ID
+                editPage.Dock = DockStyle.Fill;
+                var parent = this.Parent;
+                this.Hide();
+                parent.Controls.Add(editPage);
+                editPage.BringToFront();
 
-                // EDIT
-                if (dgvTasks.Columns[e.ColumnIndex].Name == "Edit")
+                // Handle update/cancel to return to view
+                editPage.EditCompleted += (s, ev) =>
                 {
-                    // open Add Task page in Edit Mode
-                    ucAddTask editPage = new ucAddTask(taskId);
-                    editPage.Dock = DockStyle.Fill;
-                    this.Parent.Controls.Clear();
-                    this.Parent.Controls.Add(editPage);
-                }
-
-                // DELETE
-                else if (dgvTasks.Columns[e.ColumnIndex].Name == "Delete")
+                    parent.Controls.Remove(editPage);
+                    this.Show();
+                    LoadBtn_Click(null, null);
+                };
+                editPage.CancelRequested += (s, ev) =>
                 {
-                    if (MessageBox.Show("Are you sure you want to delete this task?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    parent.Controls.Remove(editPage);
+                    this.Show();
+                };
+            }
+            // DELETE
+            else if (dgvTasks.Columns[e.ColumnIndex].Name == "Delete")
+            {
+                if (MessageBox.Show("Are you sure you want to delete this task?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"Goal Planner\";Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;";
+                    using (SqlConnection conn = new SqlConnection(connectionString))
                     {
-                        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"Goal Planner\";Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;";
-                        using (SqlConnection conn = new SqlConnection(connectionString))
-                        {
-                            string query = "DELETE FROM AddTasks WHERE AddTaskID=@TaskID";
-                            SqlCommand cmd = new SqlCommand(query, conn);
-                            cmd.Parameters.AddWithValue("@TaskID", taskId);
-                            conn.Open();
-                            cmd.ExecuteNonQuery();
-                            conn.Close();
-                        }
-                        MessageBox.Show("Task deleted successfully!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadBtn_Click(null, null); // reload grid
+                        string query = "DELETE FROM AddTasks WHERE AddTaskID=@TaskID";
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@TaskID", taskId);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
                     }
+                    MessageBox.Show("Task deleted successfully!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.BeginInvoke(new Action(() => LoadBtn_Click(null, null)));
                 }
             }
         }
@@ -102,6 +129,11 @@ namespace Goal_Planner
                     dgvTasks.Columns.Add(deleteCol);
                 }
             }
+        }
+
+        private void Searchbtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

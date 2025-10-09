@@ -30,11 +30,11 @@
         {
             this.Main_panel = new System.Windows.Forms.Panel();
             this.login_panel = new System.Windows.Forms.Panel();
+            this.linkForgot = new System.Windows.Forms.LinkLabel();
             this.btnLogin = new System.Windows.Forms.Button();
             this.picLock = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.linkForgot = new System.Windows.Forms.LinkLabel();
             this.Main_panel.SuspendLayout();
             this.login_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLock)).BeginInit();
@@ -42,6 +42,7 @@
             // 
             // Main_panel
             // 
+            this.Main_panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Main_panel.Controls.Add(this.login_panel);
             this.Main_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Main_panel.Location = new System.Drawing.Point(0, 0);
@@ -65,6 +66,16 @@
             this.login_panel.Size = new System.Drawing.Size(350, 250);
             this.login_panel.TabIndex = 0;
             // 
+            // linkForgot
+            // 
+            this.linkForgot.AutoSize = true;
+            this.linkForgot.Location = new System.Drawing.Point(115, 220);
+            this.linkForgot.Name = "linkForgot";
+            this.linkForgot.Size = new System.Drawing.Size(119, 16);
+            this.linkForgot.TabIndex = 4;
+            this.linkForgot.TabStop = true;
+            this.linkForgot.Text = "Forget Password ?";
+            // 
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.DodgerBlue;
@@ -77,6 +88,7 @@
             this.btnLogin.TabIndex = 1;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // picLock
             // 
@@ -106,16 +118,6 @@
             this.txtPassword.TabIndex = 1;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
-            // 
-            // linkForgot
-            // 
-            this.linkForgot.AutoSize = true;
-            this.linkForgot.Location = new System.Drawing.Point(115, 220);
-            this.linkForgot.Name = "linkForgot";
-            this.linkForgot.Size = new System.Drawing.Size(119, 16);
-            this.linkForgot.TabIndex = 4;
-            this.linkForgot.TabStop = true;
-            this.linkForgot.Text = "Forget Password ?";
             // 
             // login_page
             // 
