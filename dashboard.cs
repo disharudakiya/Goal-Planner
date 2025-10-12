@@ -92,5 +92,23 @@ namespace Goal_Planner
         {
 
         }
+
+        private void exit_btn_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?\nClick OK to return to Login page.",
+                                        "Confirm Exit",
+                                        MessageBoxButtons.OKCancel,
+                                        MessageBoxIcon.Question);
+
+            if (result == DialogResult.OK)
+            {
+                // Hide current Dashboard form
+                this.Hide();
+
+                // Show Login form
+                login_page login = new login_page();
+                login.Show();
+            }
+        }
     }
 }

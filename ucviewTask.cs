@@ -11,6 +11,12 @@ using System.Windows.Forms;
 
 namespace Goal_Planner
 {
+    public enum AppTheme
+    {
+        Light,
+        Dark
+    }
+
     public partial class ucviewTask : UserControl
     {
         private DataTable allTasks = new DataTable(); // store all data for filtering
